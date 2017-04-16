@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net462</TargetFramework>
     <RuntimeIdentifier>win7-x86</RuntimeIdentifier>
+    <UserSecretsId>90f36f92-9767-468c-80e0-13e9251c4666</UserSecretsId>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.0.0" />

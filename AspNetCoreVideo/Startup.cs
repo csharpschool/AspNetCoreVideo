@@ -6,19 +6,22 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Configuration;
 using System.IO;
 using AspNetCoreVideo.Services;
-using System;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Routing;
+using AspNetCoreVideo.Data;
 
 namespace AspNetCoreVideo
 {
     public class Startup
     {
         public IConfiguration Configuration { get; set; }
-        public Startup()
+        public Startup(IHostingEnvironment env)
         {
             var builder = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json");
+                .AddJsonFile("appsettings.json", optional: true);
+
+            if (env.IsDevelopment()) builder.AddUserSecrets<Startup>();
 
             Configuration = builder.Build();
         }
@@ -27,6 +30,9 @@ namespace AspNetCoreVideo
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            var conn = Configuration.GetConnectionString("DefaultConnection");
+            services.AddDbContext<VideoDbContext>(options => options.UseSqlServer(conn));
+
             services.AddMvc();
             services.AddSingleton(provider => Configuration);
             services.AddSingleton<IMessageService, ConfigurationMessageService>();
