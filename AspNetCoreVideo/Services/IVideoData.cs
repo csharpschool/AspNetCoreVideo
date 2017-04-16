@@ -7,5 +7,6 @@ namespace AspNetCoreVideo.Services
     {
         IEnumerable<Video> GetAll();
         Video Get(int id);
+        void Add(Video newVideo);
     }
 }
