@@ -22,7 +22,7 @@ namespace AspNetCoreVideo.Controllers
             {
                 Id = video.Id,
                 Title = video.Title,
-                Genre = Enum.GetName(typeof(Genres), video.GenreId)
+                Genre = video.Genre.ToString()
             });
 
             return View(model);
@@ -39,7 +39,7 @@ namespace AspNetCoreVideo.Controllers
             {
                 Id = model.Id,
                 Title = model.Title,
-                Genre = Enum.GetName(typeof(Genres), model.GenreId)
+                Genre = model.Genre.ToString()
             });
         }
 
