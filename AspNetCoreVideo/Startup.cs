@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Configuration;
 using System.IO;
+using AspNetCoreVideo.Services;
 
 namespace AspNetCoreVideo
 {
@@ -24,10 +25,11 @@ namespace AspNetCoreVideo
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton<IMessageService, HardcodedMessageService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, IMessageService msg)
         {
             loggerFactory.AddConsole();
 
@@ -38,8 +40,7 @@ namespace AspNetCoreVideo
 
             app.Run(async (context) =>
             {
-                var message = Configuration["Message"];
-                await context.Response.WriteAsync(message);
+                await context.Response.WriteAsync(msg.GetMessage());
             });
         }
     }
