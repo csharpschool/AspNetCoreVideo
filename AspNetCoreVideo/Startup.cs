@@ -40,7 +40,7 @@ namespace AspNetCoreVideo
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseStaticFiles();
+            app.UseFileServer();
 
             app.Run(async (context) =>
             {
