@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using AspNetCoreVideo.Models;
+using AspNetCoreVideo.Entities;
 
 namespace AspNetCoreVideo.Services
 {
