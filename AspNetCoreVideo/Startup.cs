@@ -43,17 +43,17 @@ namespace AspNetCoreVideo
             }
 
             app.UseFileServer();
-            app.UseMvc(ConfigureRoutes);
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller=Home}/{action=Index}/{id?}");
+            });
 
             app.Run(async (context) =>
             {
                 await context.Response.WriteAsync(msg.GetMessage());
             });
-        }
-
-        private void ConfigureRoutes(IRouteBuilder routeBuilder)
-        {
-            routeBuilder.MapRoute("Default", "{controller=Home}/{action=Index}/{Id?}");
         }
     }
 }
