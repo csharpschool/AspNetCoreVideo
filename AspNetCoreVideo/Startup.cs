@@ -6,6 +6,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Configuration;
 using System.IO;
 using AspNetCoreVideo.Services;
+using System;
 
 namespace AspNetCoreVideo
 {
@@ -41,6 +42,7 @@ namespace AspNetCoreVideo
 
             app.Run(async (context) =>
             {
+                throw new Exception("Fake Exception!");
                 await context.Response.WriteAsync(msg.GetMessage());
             });
         }
