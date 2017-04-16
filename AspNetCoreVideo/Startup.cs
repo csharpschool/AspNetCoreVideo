@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using System.IO;
 using AspNetCoreVideo.Services;
 using System;
+using Microsoft.AspNetCore.Routing;
 
 namespace AspNetCoreVideo
 {
@@ -42,12 +43,17 @@ namespace AspNetCoreVideo
             }
 
             app.UseFileServer();
-            app.UseMvcWithDefaultRoute();
+            app.UseMvc(ConfigureRoutes);
 
             app.Run(async (context) =>
             {
                 await context.Response.WriteAsync(msg.GetMessage());
             });
+        }
+
+        private void ConfigureRoutes(IRouteBuilder routeBuilder)
+        {
+            routeBuilder.MapRoute("Default", "{controller=Home}/{action=Index}/{Id?}");
         }
     }
 }
