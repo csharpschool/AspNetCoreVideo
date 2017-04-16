@@ -27,5 +27,12 @@ namespace AspNetCoreVideo.Controllers
 
             return View(model);
         }
+
+        public IActionResult Details(int id)
+        {
+            var model = _videos.Get(id);
+            return new ObjectResult(model);
+        }
+
     }
 }
