@@ -2,9 +2,13 @@
 @model AspNetCoreVideo.Entities.Video
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
-<h2>Create Video</h2>
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
 
-<form asp-action="Create" method="post">
+<h2>Create Video</h2>
+<form asp-action="Create">
     <div asp-validation-summary="All"></div>
     <table>
         <tr>
@@ -14,11 +18,12 @@
         </tr>
         <tr>
             <td><label asp-for="Genre"></label></td>
-            <td><select asp-for="Genre" asp-items="Html.GetEnumSelectList<Genres>()"></select></td>
+            <td>
+                <select asp-for="Genre" asp-items="Html.GetEnumSelectList<Genres>()"></select>
+            </td>
             <td><span asp-validation-for="Genre"></span></td>
         </tr>
     </table>
-
     <input type="submit" value="Create" />
 </form>
 
