@@ -1,10 +1,8 @@
 ﻿using AspNetCoreVideo.Entities;
-using AspNetCoreVideo.Models;
 using AspNetCoreVideo.Services;
 using AspNetCoreVideo.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Linq;
 
 namespace AspNetCoreVideo.Controllers
